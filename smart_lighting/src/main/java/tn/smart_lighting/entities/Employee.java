@@ -10,7 +10,7 @@ public class Employee {
     private String forename;
     private String surname;
     private String password;
-    private String address;
+    private Address address;
     private Integer phoneNumber;
     private Date birthDate;
     private Role userRole;
@@ -122,7 +122,7 @@ public class Employee {
                 ", \"forename\":\"" + forename + '\"' +
                 ", \"surname=\":\"" + surname + '\"' +
                 ", \"password\":\"" + password + '\"' +
-                ", \"address\":\"" + address + '\"' +
+                ", \"work\":\"" + address + '\"' +
                 ", \"phoneNumber\":" + phoneNumber +
                 ", \"birthDate\":" + birthDate +
                 ", \"userRole\":" + userRole +
