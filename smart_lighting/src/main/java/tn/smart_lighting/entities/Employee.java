@@ -118,7 +118,7 @@ public class Employee {
     public String toString() {
         return "{" +
                 "\"id\":" + id +
-                ", \"NIC\":" + nic +
+                ", \"nic\":" + nic +
                 ", \"forename\":\"" + forename + '\"' +
                 ", \"surname=\":\"" + surname + '\"' +
                 ", \"password\":\"" + password + '\"' +
