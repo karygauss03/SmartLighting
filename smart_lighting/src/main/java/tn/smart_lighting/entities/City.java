@@ -31,7 +31,7 @@ public class City {
     public String toString() {
         return "{" +
                 "\"city\":\"" + city + '\"' +
-                ", country=" + country +
+                ", \"country\":" + country +
                 '}';
     }
 }
