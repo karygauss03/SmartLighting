@@ -1,6 +1,8 @@
+tn\cot\smartlighting\entities\City.class
+tn\cot\smartlighting\entities\Country.class
 tn\cot\smartlighting\JAXRSConfiguration.class
-tn\cot\smartlighting\Person.class
-tn\cot\smartlighting\PersonResource.class
+tn\cot\smartlighting\repositories\CityRepository.class
 tn\cot\smartlighting\FieldPropertyVisibilityStrategy.class
 tn\cot\smartlighting\DocumentManagerProducer.class
-tn\cot\smartlighting\PersonRepository.class
+tn\cot\smartlighting\entities\Coordinates.class
+tn\cot\smartlighting\ressources\CityRessource.class
