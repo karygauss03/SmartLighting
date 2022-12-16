@@ -6,8 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="smart_lighting" />
+        <module name="smartlighting" />
+        <module name="SmartLighting" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SmartLighting" options="-endorseddirs &quot;C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\target/endorsed&quot;" />
+      <module name="smartlighting" options="-endorseddirs &quot;C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\jakarta-nosql-demo\target/endorsed&quot;" />
+    </option>
   </component>
 </project>
