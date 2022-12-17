@@ -1,8 +1,12 @@
+tn\cot\smartlighting\entities\Address$AddressBuilder.class
+tn\cot\smartlighting\FieldPropertyVisibilityStrategy.class
+tn\cot\smartlighting\DocumentManagerProducer.class
+tn\cot\smartlighting\ressources\AddressRessource.class
 tn\cot\smartlighting\entities\City.class
 tn\cot\smartlighting\entities\Country.class
 tn\cot\smartlighting\JAXRSConfiguration.class
+tn\cot\smartlighting\repositories\AddressRepository.class
 tn\cot\smartlighting\repositories\CityRepository.class
-tn\cot\smartlighting\FieldPropertyVisibilityStrategy.class
-tn\cot\smartlighting\DocumentManagerProducer.class
+tn\cot\smartlighting\entities\Address.class
 tn\cot\smartlighting\entities\Coordinates.class
 tn\cot\smartlighting\ressources\CityRessource.class
