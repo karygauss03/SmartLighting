@@ -26,9 +26,9 @@ public class AddressRessource {
     public List<Address> findAll() {
         return repository.findAll().collect(Collectors.toList());
     }
-
     @POST
     public void save(Address add) {
         repository.save(add);
     }
+
 }

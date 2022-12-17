@@ -7,7 +7,4 @@ import java.util.stream.Stream;
 
 public interface AddressRepository extends Repository<Address, String> {
     Stream<Address> findAll();
-    Address findById();
-    Stream<Address> findByCity();
-    Stream<Address> findByCountry();
 }
