@@ -6,6 +6,8 @@ import jakarta.nosql.mapping.Id;
 import tn.cot.smartlighting.FieldPropertyVisibilityStrategy;
 
 import javax.json.bind.annotation.JsonbVisibility;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import java.util.Objects;
 
@@ -14,6 +16,7 @@ import java.util.Objects;
 @Table(name = "addresses")
 public class Address {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     @Column
     private Country country;
@@ -24,18 +27,11 @@ public class Address {
     @Column
     private String description;
     @Column
-    private Boolean archived;
+    private boolean archived;
 
     public Address() { };
 
-    public Address(Country country, String cityId, String zipCode, String description) {
-        this.country = country;
-        this.cityId = cityId;
-        this.zipCode = zipCode;
-        this.description = description;
-    }
-
-    public void setArchived(Boolean archived) {
+    public void setArchived(boolean archived) {
         this.archived = archived;
     }
 
@@ -59,32 +55,75 @@ public class Address {
         return description;
     }
 
-    public Boolean getArchived() {
+    public boolean isArchived() {
         return archived;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Address address = (Address) o;
-        return Objects.equals(id, address.id) && country == address.country && Objects.equals(cityId, address.cityId) && Objects.equals(zipCode, address.zipCode) && Objects.equals(description, address.description) && Objects.equals(archived, address.archived);
+    public void setId(String id) {
+        this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, country, cityId, zipCode, description, archived);
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "id='" + id + '\'' +
-                ", country=" + country +
-                ", cityId='" + cityId + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", description='" + description + '\'' +
-                ", archived=" + archived +
-                '}';
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
     }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public static AddressBuilder builder() {
+        return new AddressBuilder();
+    }
+
+    public static class AddressBuilder {
+        private String id;
+        private Country country;
+        private String cityId;
+        private String zipCode;
+        private String description;
+        private boolean archived;
+        public AddressBuilder WithId(String id){
+            this.id = id;
+            return this;
+        }
+        public AddressBuilder WithCountry(Country country) {
+            this.country = country;
+            return this;
+        }
+        public AddressBuilder WithCityId(String cityId) {
+            this.cityId = cityId;
+            return this;
+        }
+        public AddressBuilder WithZipCode(String zipCode) {
+            this.zipCode = zipCode;
+            return this;
+        }
+        public AddressBuilder WithDescription(String description) {
+            this.description = description;
+            return this;
+        }
+        public AddressBuilder WithArchived() {
+            this.archived = false;
+            return this;
+        }
+        public Address build() {
+            Address address = new Address();
+            address.id = id;
+            address.country = country;
+            address.cityId = cityId;
+            address.zipCode = zipCode;
+            address.description = description;
+            address.archived = archived;
+            return address;
+        }
+    }
+
 }
