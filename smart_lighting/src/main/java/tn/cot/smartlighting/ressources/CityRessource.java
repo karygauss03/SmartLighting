@@ -10,7 +10,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
-import java.util.UUID;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -23,7 +22,6 @@ public class CityRessource {
             () -> new WebApplicationException(Response.Status.NOT_FOUND);
     @Inject
     private CityRepository repository;
-
     @GET
     public List<City> findAll() {
         return repository.findAll().collect(Collectors.toList());
