@@ -19,6 +19,9 @@
         <payara.version>1.0.5</payara.version>
         <platform.sh.version>2.2.3</platform.sh.version>
         <jakarta.nosql.version>1.0.0-b2</jakarta.nosql.version>
+        <argon2.jvm.version>2.11</argon2.jvm.version>
+        <nimbus.jose.jwt.version>9.21.1</nimbus.jose.jwt.version>
+        <java.jwt-version>4.2.1</java.jwt-version>
     </properties>
     
     <dependencies>
@@ -37,6 +40,21 @@
             <groupId>org.eclipse.jnosql.artemis</groupId>
             <artifactId>artemis-document</artifactId>
             <version>${jakarta.nosql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>de.mkammerer</groupId>
+            <artifactId>argon2-jvm</artifactId>
+            <version>${argon2.jvm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${java.jwt-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>${nimbus.jose.jwt.version}</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jnosql.diana</groupId>
