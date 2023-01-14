@@ -4,7 +4,9 @@ tn\cot\smartlighting\FieldPropertyVisibilityStrategy.class
 tn\cot\smartlighting\DocumentManagerProducer.class
 tn\cot\smartlighting\ressources\EmployeeRessource.class
 tn\cot\smartlighting\ressources\AddressRessource.class
+tn\cot\smartlighting\entities\City$CityBuilder.class
 tn\cot\smartlighting\entities\Employee.class
+tn\cot\smartlighting\Exceptions\LightingModuleNotFoundException.class
 tn\cot\smartlighting\JAXRSConfiguration.class
 tn\cot\smartlighting\repositories\EmployeeRepository.class
 tn\cot\smartlighting\ressources\LightingModuleRessource.class
@@ -16,9 +18,12 @@ tn\cot\smartlighting\Exceptions\EmployeeAlreadyExistsException.class
 tn\cot\smartlighting\ressources\CityRessource.class
 tn\cot\smartlighting\utils\Argon2Utils.class
 tn\cot\smartlighting\Exceptions\EmployeeNotFoundException.class
+tn\cot\smartlighting\entities\PasswordUpdate.class
 tn\cot\smartlighting\entities\City.class
 tn\cot\smartlighting\entities\Country.class
 tn\cot\smartlighting\repositories\AddressRepository.class
 tn\cot\smartlighting\repositories\CityRepository.class
 tn\cot\smartlighting\entities\LightingModule$LightingModuleBuilder.class
+tn\cot\smartlighting\Exceptions\CityNotFoundException.class
 tn\cot\smartlighting\entities\Coordinates.class
+tn\cot\smartlighting\Exceptions\AddressNotFoundException.class
