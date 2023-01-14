@@ -21,9 +21,9 @@ public class LightingModule {
     @Column
     private String addressId;
     @Column
-    private boolean is_on;
+    private boolean on;
     @Column
-    private boolean is_broken;
+    private boolean broken;
     @Column
     private boolean archived;
 
@@ -45,12 +45,12 @@ public class LightingModule {
         return addressId;
     }
 
-    public boolean isIs_on() {
-        return is_on;
+    public boolean isOn() {
+        return on;
     }
 
-    public boolean isIs_broken() {
-        return is_broken;
+    public boolean isBroken() {
+        return broken;
     }
 
     public boolean isArchived() {
@@ -73,6 +73,18 @@ public class LightingModule {
         this.addressId = addressId;
     }
 
+    public void setOn(boolean is_on) {
+        this.on = is_on;
+    }
+
+    public void setBroken(boolean is_broken) {
+        this.broken = is_broken;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
+
     public static LightingModuleBuilder builder() {
         return new LightingModuleBuilder();
     }
@@ -82,8 +94,8 @@ public class LightingModule {
         private double longitude;
         private double latitude;
         private String addressId;
-        private boolean is_on;
-        private boolean is_broken;
+        private boolean on;
+        private boolean broken;
         private boolean archived;
 
         public LightingModuleBuilder WithId(String id) {
@@ -103,11 +115,11 @@ public class LightingModule {
             return this;
         }
         public LightingModuleBuilder WithIsOn() {
-            this.is_on = true;
+            this.on = true;
             return this;
         }
         public LightingModuleBuilder WithIsBroken() {
-            this.is_broken = false;
+            this.broken = false;
             return this;
         }
         public LightingModuleBuilder WithArchived() {
@@ -120,8 +132,8 @@ public class LightingModule {
             lightingModule.addressId = addressId;
             lightingModule.longitude = longitude;
             lightingModule.latitude = latitude;
-            lightingModule.is_on = true;
-            lightingModule.is_broken = is_broken;
+            lightingModule.on = on;
+            lightingModule.broken = broken;
             lightingModule.archived = archived;
             return lightingModule;
         }

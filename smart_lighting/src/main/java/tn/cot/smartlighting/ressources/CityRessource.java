@@ -1,5 +1,7 @@
 package tn.cot.smartlighting.ressources;
 
+import sun.security.util.Length;
+import tn.cot.smartlighting.Exceptions.CityNotFoundException;
 import tn.cot.smartlighting.entities.City;
 import tn.cot.smartlighting.entities.Country;
 import tn.cot.smartlighting.repositories.CityRepository;
@@ -10,6 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -27,6 +30,19 @@ public class CityRessource {
         return repository.findAll().collect(Collectors.toList());
     }
     @GET
+    @Path("/{id}")
+    public Response findById(@PathParam("id") String id) {
+        try {
+            if (!repository.findById(id).isPresent()) {
+                throw new CityNotFoundException("City with id " + id + " NOT FOUND!");
+            }
+            return Response.ok(repository.findById(id).get()).build();
+        }
+        catch (CityNotFoundException e) {
+            return Response.status(400, e.getMessage()).build();
+        }
+    }
+    @GET
     @Path("/country/{country}")
     public List<City> findByCountry(@PathParam("country") Country country) {
         return repository.findByCountry(country).collect(Collectors.toList());
@@ -34,5 +50,19 @@ public class CityRessource {
     @POST
     public void save(City city) {
         repository.save(city);
+    }
+    @DELETE
+    @Path("/{id}")
+    public Response delete(@PathParam("id") String id) {
+        try{
+            if (!repository.findById(id).isPresent()){
+                throw new CityNotFoundException("City with id " + id + " NOT FOUND!");
+            }
+            repository.deleteById(id);
+            return Response.ok().build();
+        }
+        catch (CityNotFoundException e) {
+            return Response.status(400, e.getMessage()).build();
+        }
     }
 }
