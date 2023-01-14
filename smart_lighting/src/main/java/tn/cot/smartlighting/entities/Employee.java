@@ -31,6 +31,8 @@ public class Employee implements Serializable {
     private String password;
     @Column("userRole")
     private Set<Role> roles;
+    @Column
+    private boolean archived;
 
     public Employee() {
     }
@@ -63,6 +65,10 @@ public class Employee implements Serializable {
         return roles;
     }
 
+    public boolean isArchived() {
+        return archived;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -91,7 +97,11 @@ public class Employee implements Serializable {
         this.roles = roles;
     }
 
-    public Employee(String email, String forename, String surname, String address_id, String phoneNumber, String password, Set<Role> roles) {
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
+
+    public Employee(String email, String forename, String surname, String address_id, String phoneNumber, String password, Set<Role> roles, boolean archived) {
         this.email = email;
         this.forename = forename;
         this.surname = surname;
@@ -99,6 +109,7 @@ public class Employee implements Serializable {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.roles = roles;
+        this.archived = archived;
     }
 
     @Override
@@ -111,7 +122,7 @@ public class Employee implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, forename, surname, address_id, phoneNumber, password, roles);
+        return Objects.hash(email, forename, surname, address_id, phoneNumber, password, roles, archived);
     }
 
     @Override
@@ -124,6 +135,7 @@ public class Employee implements Serializable {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
+                ", archived=" + archived +
                 '}';
     }
 
