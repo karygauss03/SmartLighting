@@ -7,4 +7,5 @@ import java.util.stream.Stream;
 
 public interface AddressRepository extends Repository<Address, String> {
     Stream<Address> findAll();
+    Stream<Address> findByArchived(boolean archived);
 }
