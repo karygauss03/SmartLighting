@@ -136,4 +136,21 @@ public class EmployeeRessource {
             return Response.status(400, e.getMessage()).build();
         }
     }
+    @POST
+    @Path("/login")
+    public Response login(Employee emp) {
+        try {
+            if (!employeeRepository.findById(emp.getEmail()).isPresent()) {
+                throw new EmployeeNotFoundException("Employee not found");
+            }
+            Employee employeeInDb = employeeRepository.findById(emp.getEmail()).get();
+            if (!argon2Utils.check(employeeInDb.getPassword(), emp.getPassword().toCharArray())) {
+                return Response.status(400, "Password incorrect").build();
+            }
+            return Response.ok("Login Successfully").build();
+        }
+        catch (EmployeeNotFoundException e) {
+            return Response.status(400, e.getMessage()).build();
+        }
+    }
 }
