@@ -22,7 +22,6 @@ public class AddressRessource {
             () -> new WebApplicationException(Response.Status.NOT_FOUND);
     @Inject
     AddressRepository repository;
-
     @GET
     public List<Address> findCurrentAll() {
         return repository.findByArchived(false).collect(Collectors.toList());

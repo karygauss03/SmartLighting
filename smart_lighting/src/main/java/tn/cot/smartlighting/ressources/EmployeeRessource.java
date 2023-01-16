@@ -2,6 +2,7 @@ package tn.cot.smartlighting.ressources;
 
 import tn.cot.smartlighting.Exceptions.EmployeeAlreadyExistsException;
 import tn.cot.smartlighting.Exceptions.EmployeeNotFoundException;
+import tn.cot.smartlighting.security.model.Credentials;
 import tn.cot.smartlighting.entities.Employee;
 import tn.cot.smartlighting.entities.PasswordUpdate;
 import tn.cot.smartlighting.repositories.EmployeeRepository;
@@ -14,7 +15,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -138,16 +138,18 @@ public class EmployeeRessource {
     }
     @POST
     @Path("/login")
-    public Response login(Employee emp) {
+    public Response login(Credentials credentials){
         try {
-            if (!employeeRepository.findById(emp.getEmail()).isPresent()) {
+            if (!employeeRepository.findById(credentials.getEmail()).isPresent()) {
                 throw new EmployeeNotFoundException("Employee not found");
             }
-            Employee employeeInDb = employeeRepository.findById(emp.getEmail()).get();
-            if (!argon2Utils.check(employeeInDb.getPassword(), emp.getPassword().toCharArray())) {
-                return Response.status(400, "Password incorrect").build();
+            Employee employeeInDb = employeeRepository.findById(credentials.getEmail()).get();
+            if (!argon2Utils.check(employeeInDb.getPassword(), credentials.getPassword().toCharArray())) {
+                return Response.status(Response.Status.NOT_ACCEPTABLE).entity("{\"message\":\"Invalid Credentials!\"}").build();
             }
-            return Response.ok("Login Successfully").build();
+            //Generate the token here
+
+            return Response.ok("{\"message\":\"Login successfully!\"}").build();
         }
         catch (EmployeeNotFoundException e) {
             return Response.status(400, e.getMessage()).build();
