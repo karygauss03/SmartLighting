@@ -18,6 +18,7 @@ C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lightin
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\security\UserJWT.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\security\GrantType.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\entities\Role.java
+C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\filters\AuthenticationFilter.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\repositories\LightingModuleRepository.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\ressources\Oauth2Ressources.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\security\RefreshToken.java
@@ -27,10 +28,13 @@ C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lightin
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\FieldPropertyVisibilityStrategy.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\security\Oauth2Service.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\entities\LightingModule.java
+C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\filters\CORSFilter.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\repositories\CityRepository.java
+C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\filters\AuthorizationFilter.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\repositories\UserTokenRepository.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\Exceptions\EmployeeNotAuthorizedToCreateAccountException.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\security\AccessToken.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\entities\Employee.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\repositories\AddressRepository.java
 C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\DocumentManagerProducer.java
+C:\Users\KaryGauss\Desktop\INDP3 AIM\Cloud of Things\SmartLighting\smart_lighting\src\main\java\tn\cot\smartlighting\filters\Secured.java

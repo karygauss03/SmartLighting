@@ -22,6 +22,7 @@ public class SecurityService {
     @Inject
     private SecurityContext securityContext;
 
+    /*
     public void create(Employee employee) {
         if (employeeRepository.findById(employee.getEmail()).isPresent()) {
             throw new EmployeeNotFoundException("Employee with email  " + employee.getEmail());
@@ -81,7 +82,7 @@ public class SecurityService {
     public List<Employee> getUsers() {
         return employeeRepository.findAll().collect(Collectors.toList());
     }
-
+    */
     private boolean isForbidden(String  email, SecurityContext context, Principal principal) {
         return !(context.isUserInRole(Role.ADMIN.name()));
 

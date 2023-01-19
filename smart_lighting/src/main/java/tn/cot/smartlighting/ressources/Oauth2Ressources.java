@@ -32,6 +32,5 @@ public class Oauth2Ressources {
             default:
                 throw new UnsupportedOperationException("No other types are supported");
         }
-
     }
 }

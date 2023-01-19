@@ -2,7 +2,6 @@ package tn.cot.smartlighting.security;
 
 import tn.cot.smartlighting.FieldPropertyVisibilityStrategy;
 
-import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbVisibility;
 import javax.validation.constraints.NotBlank;
 

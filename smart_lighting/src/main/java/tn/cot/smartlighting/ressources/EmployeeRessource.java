@@ -3,16 +3,17 @@ package tn.cot.smartlighting.ressources;
 import tn.cot.smartlighting.Exceptions.EmployeeAlreadyExistsException;
 import tn.cot.smartlighting.Exceptions.EmployeeNotFoundException;
 import tn.cot.smartlighting.entities.Employee;
+import tn.cot.smartlighting.filters.Secured;
 import tn.cot.smartlighting.repositories.EmployeeRepository;
 import tn.cot.smartlighting.utils.Argon2Utils;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 @ApplicationScoped
@@ -50,7 +51,8 @@ public class EmployeeRessource {
         return employeeRepository.findById(email).orElseThrow(NOT_FOUND);
     }
     @DELETE
-    //Add Admin only
+    @Secured
+    @RolesAllowed("ADMIN")
     @Path("/{email}")
     public Response deleteEmployee(@PathParam("email") String email) {
         try {

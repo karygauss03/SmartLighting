@@ -15,6 +15,7 @@ tn\cot\smartlighting\entities\Employee.class
 tn\cot\smartlighting\JAXRSConfiguration.class
 tn\cot\smartlighting\security\Oauth2Request.class
 tn\cot\smartlighting\security\Oauth2Response.class
+tn\cot\smartlighting\filters\AuthenticationFilter.class
 tn\cot\smartlighting\repositories\EmployeeRepository.class
 tn\cot\smartlighting\security\SecurityService.class
 tn\cot\smartlighting\ressources\LightingModuleRessource.class
@@ -29,12 +30,15 @@ tn\cot\smartlighting\ressources\CityRessource.class
 tn\cot\smartlighting\utils\Argon2Utils.class
 tn\cot\smartlighting\Exceptions\EmployeeNotFoundException.class
 tn\cot\smartlighting\security\UserJWT.class
+tn\cot\smartlighting\filters\AuthorizationFilter.class
 tn\cot\smartlighting\security\Oauth2Request$GenerateToken.class
 tn\cot\smartlighting\entities\City.class
 tn\cot\smartlighting\entities\Country.class
 tn\cot\smartlighting\repositories\AddressRepository.class
 tn\cot\smartlighting\repositories\CityRepository.class
 tn\cot\smartlighting\entities\LightingModule$LightingModuleBuilder.class
+tn\cot\smartlighting\filters\CORSFilter.class
+tn\cot\smartlighting\filters\Secured.class
 tn\cot\smartlighting\security\UserToken.class
 tn\cot\smartlighting\entities\Coordinates.class
 tn\cot\smartlighting\Exceptions\EmployeeNotAuthorizedException.class
