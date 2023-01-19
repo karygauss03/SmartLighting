@@ -141,23 +141,4 @@ public class EmployeeRessource {
             return Response.status(400, e.getMessage()).build();
         }
     }
-    @POST
-    @Path("/login")
-    public Response login(Credentials credentials){
-        try {
-            if (!employeeRepository.findById(credentials.getEmail()).isPresent()) {
-                throw new EmployeeNotFoundException("Employee not found");
-            }
-            Employee employeeInDb = employeeRepository.findById(credentials.getEmail()).get();
-            if (!argon2Utils.check(employeeInDb.getPassword(), credentials.getPassword().toCharArray())) {
-                return Response.status(Response.Status.NOT_ACCEPTABLE).entity("{\"message\":\"Invalid Credentials!\"}").build();
-            }
-            //Generate the token here
-
-            return Response.ok("{\"message\":\"Login successfully!\"}").build();
-        }
-        catch (EmployeeNotFoundException e) {
-            return Response.status(400, e.getMessage()).build();
-        }
-    }
 }
