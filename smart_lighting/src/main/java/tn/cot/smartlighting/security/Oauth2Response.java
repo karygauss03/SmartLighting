@@ -10,8 +10,11 @@ public class Oauth2Response {
     @JsonbProperty("access_token")
     private String accessToken;
 
-    @JsonbProperty("username")
+    @JsonbProperty("expires_in")
     private int expiresIn;
+
+    @JsonbProperty("employeeId")
+    private String employeeId;
 
     @JsonbProperty("refresh_token")
     private String refreshToken;
@@ -29,10 +32,15 @@ public class Oauth2Response {
         return refreshToken;
     }
 
-    static Oauth2Response of(AccessToken accessToken, RefreshToken refreshToken, int expiresIn) {
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    static Oauth2Response of(AccessToken accessToken, RefreshToken refreshToken, int expiresIn, String employeeId) {
         Oauth2Response response = new Oauth2Response();
         response.accessToken = accessToken.getToken();
         response.refreshToken = refreshToken.getToken();
+        response.employeeId = employeeId;
         response.expiresIn = expiresIn;
         return response;
     }
