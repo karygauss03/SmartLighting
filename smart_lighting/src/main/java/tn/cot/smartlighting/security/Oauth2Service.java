@@ -49,7 +49,7 @@ public class Oauth2Service {
         RefreshToken refreshToken = new RefreshToken(Token.generate(), accessToken);
         userToken.add(refreshToken);
         userTokenRepository.save(userToken);
-        final Oauth2Response response = Oauth2Response.of(accessToken, refreshToken, EXPIRE_IN);
+        final Oauth2Response response = Oauth2Response.of(accessToken, refreshToken, EXPIRE_IN, user.getEmail());
         return response;
     }
 
@@ -65,11 +65,12 @@ public class Oauth2Service {
                 .orElseThrow(() -> new EmployeeNotAuthorizedException("Unauthorized"));
 
         final Employee user = securityService.findBy(userToken.getEmail());
+        final String employeeId = user.getEmail();
         final Token token = Token.generate();
         final String jwt = UserJWT.createToken(user, token, EXPIRES);
         AccessToken accessToken = new AccessToken(token.get(), jwt, EXPIRES);
         RefreshToken refreshToken = userToken.update(accessToken, request.getRefreshToken(), userTokenRepository);
-        final Oauth2Response response = Oauth2Response.of(accessToken, refreshToken, EXPIRE_IN);
+        final Oauth2Response response = Oauth2Response.of(accessToken, refreshToken, EXPIRE_IN, employeeId);
 
         return response;
     }
