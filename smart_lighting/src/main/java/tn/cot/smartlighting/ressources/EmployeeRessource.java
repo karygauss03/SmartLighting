@@ -18,6 +18,8 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -47,6 +49,7 @@ public class EmployeeRessource {
                 throw new EmployeeAlreadyExistsException("Employee with id " + employee.getEmail() + " already exists");
             }
             employee.hashPassword(employee.getPassword(), argon2Utils);
+            employee.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
             employeeRepository.save(employee);
             return Response.ok("Employee added successfully!").build();
         }
@@ -64,6 +67,7 @@ public class EmployeeRessource {
                 throw new EmployeeNotFoundException("Employee with id " + employee.getEmail() + " already exist!");
             }
             employee.hashPassword(employee.getPassword(), argon2Utils);
+            employee.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
             employeeRepository.save(employee);
             return Response.ok("Employee added successfully!").build();
         }

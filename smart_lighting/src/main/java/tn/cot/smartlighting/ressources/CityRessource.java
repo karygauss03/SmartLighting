@@ -13,6 +13,8 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -58,8 +60,13 @@ public class CityRessource {
     @POST
     @Secured
     @RolesAllowed("ADMIN")
-    public void save(City city) {
+    public Response save(City city) {
+        if (repository.findById(city.getId()).isPresent()) {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).entity("City with id " + city.getId() + " already exists").build();
+        }
+        city.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
         repository.save(city);
+        return Response.ok("City created successfully").build();
     }
     @DELETE
     @Secured

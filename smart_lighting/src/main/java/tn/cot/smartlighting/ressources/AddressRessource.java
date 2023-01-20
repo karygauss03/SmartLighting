@@ -11,6 +11,8 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -60,6 +62,7 @@ public class AddressRessource {
             if (repository.findById(add.getId()).isPresent()) {
                 throw new AddressNotFoundException("City with id " + add.getId() + " already exist!");
             }
+            add.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
             repository.save(add);
             return Response.ok("Address added successfully").build();
         }

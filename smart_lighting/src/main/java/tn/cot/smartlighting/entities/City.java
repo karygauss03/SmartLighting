@@ -9,6 +9,8 @@ import javax.json.bind.annotation.JsonbVisibility;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity
@@ -22,6 +24,8 @@ public class City {
     private Country country;
     @Column
     private String name;
+    @Column
+    private String created_on;
 
     public City() {
     }
@@ -38,6 +42,10 @@ public class City {
         return name;
     }
 
+    public String getCreated_on() {
+        return created_on;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -50,6 +58,10 @@ public class City {
         this.name = name;
     }
 
+    public void setCreated_on(String created_on) {
+        this.created_on = created_on;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,7 +72,7 @@ public class City {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, country, name);
+        return Objects.hash(id, country, name, created_on);
     }
 
     @Override
@@ -80,6 +92,7 @@ public class City {
         private String id;
         private Country country;
         private String name;
+        private String created_on;
         public CityBuilder WithId(String id) {
             this.id = id;
             return this;
@@ -92,11 +105,16 @@ public class City {
             this.name = name;
             return this;
         }
+        public CityBuilder WithCreatedOn(String created_on) {
+            this.created_on = LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a"));
+            return this;
+        }
         public City build() {
             City city = new City();
             city.id = this.id;
             city.country = this.country;
             city.name = this.name;
+            city.created_on = this.created_on;
             return city;
         }
     }
