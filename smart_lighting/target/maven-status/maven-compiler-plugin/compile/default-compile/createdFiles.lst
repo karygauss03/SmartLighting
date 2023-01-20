@@ -1,3 +1,4 @@
+tn\cot\smartlighting\entities\Assignment.class
 tn\cot\smartlighting\entities\Address$AddressBuilder.class
 tn\cot\smartlighting\FieldPropertyVisibilityStrategy.class
 tn\cot\smartlighting\DocumentManagerProducer.class
@@ -8,6 +9,7 @@ tn\cot\smartlighting\security\Oauth2Request$RefreshToken.class
 tn\cot\smartlighting\entities\Employee.class
 tn\cot\smartlighting\Exceptions\LightingModuleNotFoundException.class
 tn\cot\smartlighting\security\Oauth2Response.class
+tn\cot\smartlighting\ressources\AssignmentRessource.class
 tn\cot\smartlighting\security\SecurityService.class
 tn\cot\smartlighting\ressources\LightingModuleRessource.class
 tn\cot\smartlighting\security\AccessToken.class
@@ -23,6 +25,7 @@ tn\cot\smartlighting\repositories\AddressRepository.class
 tn\cot\smartlighting\repositories\CityRepository.class
 tn\cot\smartlighting\entities\LightingModule$LightingModuleBuilder.class
 tn\cot\smartlighting\mqtt\MqttConnection$1.class
+tn\cot\smartlighting\entities\Assignment$AssignmentBuilder.class
 tn\cot\smartlighting\security\UserToken.class
 tn\cot\smartlighting\Exceptions\AddressNotFoundException.class
 tn\cot\smartlighting\Exceptions\EmployeeNotAuthorizedException.class
@@ -45,6 +48,7 @@ tn\cot\smartlighting\Exceptions\EmployeeAlreadyExistsException.class
 tn\cot\smartlighting\utils\Argon2Utils.class
 tn\cot\smartlighting\filters\AuthorizationFilter.class
 tn\cot\smartlighting\security\Oauth2Request$GenerateToken.class
+tn\cot\smartlighting\repositories\AssignmentRepository.class
 tn\cot\smartlighting\mqtt\MqttConnection.class
 tn\cot\smartlighting\filters\CORSFilter.class
 tn\cot\smartlighting\filters\Secured.class

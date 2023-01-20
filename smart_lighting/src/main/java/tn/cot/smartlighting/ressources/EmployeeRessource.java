@@ -34,8 +34,10 @@ public class EmployeeRessource {
     @Inject
     Argon2Utils argon2Utils;
     @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     public List<Employee> findActiveEmployees() {
-        return employeeRepository.findAll().collect(Collectors.toList());
+        return employeeRepository.findByArchived(false).collect(Collectors.toList());
     }
     @POST
     @Path("/signup")
@@ -53,6 +55,8 @@ public class EmployeeRessource {
         }
     }
     @POST
+    @Secured
+    @RolesAllowed("ADMIN")
     @Path("/add-employee")
     public Response addEmployee(@Valid Employee employee) {
         try {
@@ -69,11 +73,15 @@ public class EmployeeRessource {
     }
      //We need to add update password (oldPass, newPass)
     @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/{email}")
     public Employee getEmployeeById(@PathParam("email") String email) {
         return employeeRepository.findById(email).orElseThrow(NOT_FOUND);
     }
     @PUT
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/{email}")
     public Response updateEmployeeById(@PathParam("email") String email, Employee employee) {
         try {
@@ -104,6 +112,8 @@ public class EmployeeRessource {
         }
     }
     @PATCH
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/update-password/{email}")
     public Response updatePassword(@PathParam("email") String email, PasswordUpdate passwordUpdate) {
         try {
