@@ -2,8 +2,10 @@ package tn.cot.smartlighting.ressources;
 
 import tn.cot.smartlighting.Exceptions.AddressNotFoundException;
 import tn.cot.smartlighting.entities.Address;
+import tn.cot.smartlighting.filters.Secured;
 import tn.cot.smartlighting.repositories.AddressRepository;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -23,15 +25,21 @@ public class AddressRessource {
     @Inject
     AddressRepository repository;
     @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     public List<Address> findCurrentAll() {
         return repository.findByArchived(false).collect(Collectors.toList());
     }
     @GET
+    @Secured
+    @RolesAllowed("ADMIN")
     @Path("/archived")
     public List<Address> findArchivedAll() {
         return repository.findByArchived(true).collect(Collectors.toList());
     }
     @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/{id}")
     public Response findById(@PathParam("id") String id) {
         try {
@@ -45,6 +53,8 @@ public class AddressRessource {
         }
     }
     @POST
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     public Response save(Address add) {
         try {
             if (repository.findById(add.getId()).isPresent()) {
@@ -58,6 +68,8 @@ public class AddressRessource {
         }
     }
     @DELETE
+    @Secured
+    @RolesAllowed("ADMIN")
     @Path("/{id}")
     public Response deleteById(@PathParam("id") String id) {
         try {
@@ -74,6 +86,8 @@ public class AddressRessource {
         }
     }
     @PUT
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/{id}")
     public Response updateById(@PathParam("id") String id, Address newAddress) {
         try {
