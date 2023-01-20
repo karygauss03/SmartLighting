@@ -4,8 +4,10 @@ import sun.security.util.Length;
 import tn.cot.smartlighting.Exceptions.CityNotFoundException;
 import tn.cot.smartlighting.entities.City;
 import tn.cot.smartlighting.entities.Country;
+import tn.cot.smartlighting.filters.Secured;
 import tn.cot.smartlighting.repositories.CityRepository;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -26,10 +28,14 @@ public class CityRessource {
     @Inject
     private CityRepository repository;
     @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     public List<City> findAll() {
         return repository.findAll().collect(Collectors.toList());
     }
     @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/{id}")
     public Response findById(@PathParam("id") String id) {
         try {
@@ -43,15 +49,21 @@ public class CityRessource {
         }
     }
     @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/country/{country}")
     public List<City> findByCountry(@PathParam("country") Country country) {
         return repository.findByCountry(country).collect(Collectors.toList());
     }
     @POST
+    @Secured
+    @RolesAllowed("ADMIN")
     public void save(City city) {
         repository.save(city);
     }
     @DELETE
+    @Secured
+    @RolesAllowed("ADMIN")
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         try{
