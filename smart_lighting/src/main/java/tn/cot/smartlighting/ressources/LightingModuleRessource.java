@@ -4,8 +4,10 @@ import tn.cot.smartlighting.Exceptions.AddressNotFoundException;
 import tn.cot.smartlighting.Exceptions.LightingModuleNotFoundException;
 import tn.cot.smartlighting.entities.Address;
 import tn.cot.smartlighting.entities.LightingModule;
+import tn.cot.smartlighting.filters.Secured;
 import tn.cot.smartlighting.repositories.LightingModuleRepository;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -27,25 +29,35 @@ public class LightingModuleRessource {
     LightingModuleRepository repository;
 
     @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     public List<LightingModule> findAll() {
         return repository.findByArchived(false).collect(Collectors.toList());
     }
     @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/archived")
     public List<LightingModule> findArchivedAll() {
         return repository.findByArchived(true).collect(Collectors.toList());
     }
     @GET
+    @Secured
+    @RolesAllowed("ADMIN")
     @Path("/active")
     public List<LightingModule> findActiveAll() {
         return repository.findByOn(true).collect(Collectors.toList());
     }
     @GET
+    @Secured
+    @RolesAllowed("ADMIN")
     @Path("/broken")
     public List<LightingModule> findBrokenAll() {
         return repository.findByBroken(true).collect(Collectors.toList());
     }
     @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/{id}")
     public Response findById(@PathParam("id") String id) {
         try {
@@ -59,10 +71,14 @@ public class LightingModuleRessource {
         }
     }
     @POST
+    @Secured
+    @RolesAllowed("ADMIN")
     public void save(LightingModule lightingModule) {
         repository.save(lightingModule);
     }
     @PUT
+    @Secured
+    @RolesAllowed("ADMIN")
     @Path("/{id}")
     public Response updateById(@PathParam("id") String id, LightingModule newLightingModule) {
         try {
@@ -87,6 +103,8 @@ public class LightingModuleRessource {
         }
     }
     @PATCH
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/toggle/{id}")
     public Response changeStatus(@PathParam("id") String id) {
         try {
@@ -104,6 +122,8 @@ public class LightingModuleRessource {
         }
     }
     @DELETE
+    @Secured
+    @RolesAllowed("ADMIN")
     @Path("/{id}")
     public Response deleteById(@PathParam("id") String id) {
         try {
