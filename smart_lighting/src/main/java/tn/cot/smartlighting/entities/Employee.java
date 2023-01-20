@@ -33,6 +33,8 @@ public class Employee implements Serializable {
     private Set<Role> roles;
     @Column
     private boolean archived;
+    @Column
+    private String created_on;
 
     public Employee() {
     }
@@ -65,6 +67,10 @@ public class Employee implements Serializable {
         return roles;
     }
 
+    public String getCreated_on() {
+        return created_on;
+    }
+
     public boolean isArchived() {
         return archived;
     }
@@ -95,6 +101,10 @@ public class Employee implements Serializable {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void setCreated_on(String created_on) {
+        this.created_on = created_on;
     }
 
     public void setArchived(boolean archived) {

@@ -9,6 +9,8 @@ import javax.json.bind.annotation.JsonbVisibility;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity
@@ -28,6 +30,8 @@ public class Address {
     private String description;
     @Column
     private boolean archived;
+    @Column
+    private String created_on;
 
     public Address() { };
 
@@ -59,6 +63,10 @@ public class Address {
         return archived;
     }
 
+    public String getCreated_on() {
+        return created_on;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -79,6 +87,10 @@ public class Address {
         this.description = description;
     }
 
+    public void setCreated_on(String created_on) {
+        this.created_on = created_on;
+    }
+
     public static AddressBuilder builder() {
         return new AddressBuilder();
     }
@@ -90,6 +102,7 @@ public class Address {
         private String zipCode;
         private String description;
         private boolean archived;
+        private String created_on;
         public AddressBuilder WithId(String id){
             this.id = id;
             return this;
@@ -114,6 +127,10 @@ public class Address {
             this.archived = false;
             return this;
         }
+        public AddressBuilder WithCreatedOn() {
+            this.created_on = LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a"));
+            return this;
+        }
         public Address build() {
             Address address = new Address();
             address.id = id;
@@ -122,6 +139,7 @@ public class Address {
             address.zipCode = zipCode;
             address.description = description;
             address.archived = archived;
+            address.created_on = created_on;
             return address;
         }
     }

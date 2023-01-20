@@ -13,6 +13,8 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -50,7 +52,22 @@ public class LightingModuleRessource {
     }
     @GET
     @Secured
-    @RolesAllowed("ADMIN")
+    @RolesAllowed({"ADMIN", "USER"})
+    @Path("/approved")
+    public List<LightingModule> findApproved() {
+        return repository.findByApproved(true).collect(Collectors.toList());
+    }
+    @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
+    @Path("/not_approved")
+    public List<LightingModule> findNotApproved() {
+        return repository.findByApproved(false).collect(Collectors.toList());
+    }
+
+    @GET
+    @Secured
+    @RolesAllowed({"ADMIN", "USER"})
     @Path("/broken")
     public List<LightingModule> findBrokenAll() {
         return repository.findByBroken(true).collect(Collectors.toList());
@@ -72,13 +89,35 @@ public class LightingModuleRessource {
     }
     @POST
     @Secured
-    @RolesAllowed("ADMIN")
-    public void save(LightingModule lightingModule) {
+    @RolesAllowed({"ADMIN", "USER"})
+    public Response save(LightingModule lightingModule) {
+        if (repository.findById(lightingModule.getId()).isPresent()) {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).entity("Lighting module with id " + lightingModule.getId() + " already exists").build();
+        }
+        lightingModule.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
+        lightingModule.setOn(true);
         repository.save(lightingModule);
+        return Response.ok("Lighting module created successfully").build();
+    }
+    @POST
+    @Secured
+    @RolesAllowed("ADMIN")
+    @Path("/approve/{id}")
+    public Response approve(@PathParam("id") String id) {
+        if (!repository.findById(id).isPresent()) {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).entity("Lighting module with id " + id + " NOT FOUND!").build();
+        }
+        LightingModule lightingModule = repository.findById(id).get();
+        if (lightingModule.isApproved()) {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).entity("Lighting module already approved").build();
+        }
+        lightingModule.setApproved(true);
+        repository.save(lightingModule);
+        return Response.ok("Lighting module approved").build();
     }
     @PUT
     @Secured
-    @RolesAllowed("ADMIN")
+    @RolesAllowed({"ADMIN","USER"})
     @Path("/{id}")
     public Response updateById(@PathParam("id") String id, LightingModule newLightingModule) {
         try {

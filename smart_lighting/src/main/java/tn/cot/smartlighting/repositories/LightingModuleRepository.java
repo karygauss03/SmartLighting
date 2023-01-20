@@ -10,4 +10,5 @@ public interface LightingModuleRepository extends Repository<LightingModule, Str
     Stream<LightingModule> findByArchived(boolean archived);
     Stream <LightingModule> findByOn(boolean on);
     Stream <LightingModule> findByBroken(boolean broken);
+    Stream <LightingModule> findByApproved(boolean approved);
 }

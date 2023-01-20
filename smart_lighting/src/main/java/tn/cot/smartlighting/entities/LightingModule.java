@@ -7,6 +7,8 @@ import tn.cot.smartlighting.FieldPropertyVisibilityStrategy;
 
 import javax.json.bind.annotation.JsonbVisibility;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @JsonbVisibility(FieldPropertyVisibilityStrategy.class)
@@ -26,6 +28,10 @@ public class LightingModule {
     private boolean broken;
     @Column
     private boolean archived;
+    @Column
+    private String created_on;
+    @Column
+    private boolean approved;
 
     public LightingModule(){ };
 
@@ -53,8 +59,20 @@ public class LightingModule {
         return broken;
     }
 
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
     public boolean isArchived() {
         return archived;
+    }
+
+    public String getCreated_on() {
+        return created_on;
     }
 
     public void setId(String id) {
@@ -85,6 +103,10 @@ public class LightingModule {
         this.archived = archived;
     }
 
+    public void setCreated_on(String created_on) {
+        this.created_on = created_on;
+    }
+
     public static LightingModuleBuilder builder() {
         return new LightingModuleBuilder();
     }
@@ -97,6 +119,8 @@ public class LightingModule {
         private boolean on;
         private boolean broken;
         private boolean archived;
+        private boolean approved;
+        private String created_on;
 
         public LightingModuleBuilder WithId(String id) {
             this.id = id;
@@ -122,8 +146,16 @@ public class LightingModule {
             this.broken = false;
             return this;
         }
+        public LightingModuleBuilder WithApproved() {
+            this.approved = false;
+            return this;
+        }
         public LightingModuleBuilder WithArchived() {
             this.archived = false;
+            return this;
+        }
+        public LightingModuleBuilder WithCreatedOn() {
+            this.created_on = LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a"));
             return this;
         }
         public LightingModule build() {
@@ -135,6 +167,7 @@ public class LightingModule {
             lightingModule.on = on;
             lightingModule.broken = broken;
             lightingModule.archived = archived;
+            lightingModule.approved = approved;
             return lightingModule;
         }
     }
