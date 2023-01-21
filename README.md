@@ -17,7 +17,6 @@ To develop this project we use:
 - Wildfly preview 27.0.0 final
 - JDK 17.0.2
 - Flutter
-- Node-Red
 - Mosquitto broker
 - MongoDB
 - HC SR-04 Ultrasound
@@ -37,4 +36,4 @@ With our school mail, we can get a 100$ voucher inside of Microsoft Azure. With 
 - Ressource disk size: 8GB
 
 # Cerfitication and grading
-....
+
