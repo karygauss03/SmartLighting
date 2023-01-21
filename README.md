@@ -20,7 +20,8 @@ To develop this project we use:
 - Node-Red
 - Mosquitto broker
 - MongoDB
-- ....
+- HC SR-04 Ultrasound
+- LDR
 
 # Installation guide
 - Clone the repository.
